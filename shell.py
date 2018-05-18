@@ -10,6 +10,10 @@ import paramiko
 reload(sys)
 sys.setdefaultencoding('utf8')
 
+'''
+python2.7
+'''
+
 def ssh_scp_put(ip, username, password):
     """
     上传文件
@@ -29,6 +33,17 @@ def ssh_scp_put(ip, username, password):
     sftp.put('/Users/chuxiaoyi/workspace/mioji-文件/日常记录/20180515各源错误码case/shell.py', '/home/spider/shell.py')
     print '上传完成'
 
+def ssh_scp_get(ip, user, password):
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.connect(ip, 22, user, password)
+    a = ssh.exec_command('date')
+    stdin, stdout, stderr = a
+    print stdout.read()
+    sftp = paramiko.SFTPClient.from_transport(ssh.get_transport())
+    sftp = ssh.open_sftp()
+    sftp.get('/home/spider//chuxiaoyi/result.json', '/Users/chuxiaoyi/workspace/mioji-文件/日常记录/20180515各源错误码case/elong-20180516/'+ip+'.json')
+    print "下载完成"
 
 def telent(ip):
     """
@@ -42,7 +57,7 @@ def telent(ip):
     from pexpect import pxssh
     ssh = pxssh.pxssh()
     ssh.login(server=Host, username=username,password=password)
-    ssh.sendline('python shell.py agodaHotel')
+    ssh.sendline('python shell.py elongHotel')
     ssh.prompt()
     print ssh.before
 
@@ -65,7 +80,7 @@ def get_log():
     # 当前文件夹获取到的日志文件夹
     log_files = p.stdout.read().decode('utf8').split('\n')
     # 需要查看的日志文件夹
-    need_log_files = ['20180515']
+    need_log_files = ['20180516']
     for f in log_files:
         if f in need_log_files:
             os.chdir('/search/spider_log/rotation/' + f)
@@ -79,8 +94,8 @@ def get_log():
 
 def process_log():
     dir_list = os.listdir('/home/spider/chuxiaoyi')
-    # # 当前服务器的所有符合条件的日志
-    # all_log_list = list()
+    # 当前服务器的所有符合条件的日志
+    all_log_list = list()
     # 当前服务器的所有符合条件的爬虫code字典合
     all_code_dict = dict()
     for d in dir_list:
@@ -94,35 +109,34 @@ def process_log():
                     code = re.search(r'code: (\d+)', info).group(1)
                 except Exception as e :
                     code = ''
-                # try:
-                #     source = re.search(r'source: (.*)] ', info).group(1)
-                # except Exception:
-                #     source = ''
-                # try:
-                #     content = re.search(r'"content": "(.*)", "task_type"', info).group(1)
-                # except Exception as e :
-                #     content = ""
-                # code_dict[code] = code_dict.get(code, 0)+1
+                try:
+                    source = re.search(r'source: (.*)] ', info).group(1)
+                except Exception:
+                    source = ''
+                try:
+                    content = re.search(r'"content": "(.*)", "task_type"', info).group(1)
+                except Exception as e :
+                    content = ""
+                code_dict[code] = code_dict.get(code, 0)+1
                 all_code_dict[code] = all_code_dict.get(code, 0)+1
-                # spider_info = dict(
-                #     code=code,
-                #     source=source,
-                #     content=content
-                # )
-                # log_list.append(spider_info)
+                spider_info = dict(
+                    code=code,
+                    source=source,
+                    content=content
+                )
+                log_list.append(spider_info)
+        all_log_list.append(
+            dict(
+                data=d.split('.')[0],
+                count=code_dict,
+                log_list=log_list
+            )
+        )
+    with open('/home/spider/chuxiaoyi/result.json', 'w') as result:
+        result.write(
+            json.dumps(all_log_list, ensure_ascii=False)
+        )
     print all_code_dict
-    #     all_log_list.append(
-    #         dict(
-    #             data=d.split('.')[0],
-    #             count=code_dict,
-    #             log_list=log_list
-    #         )
-    #     )
-    # with open('/home/spider/chuxiaoyi/result.json', 'w') as result:
-    #     result.write(
-    #         json.dumps(all_log_list, ensure_ascii=False)
-    #     )
-
 
 def main():
     if len(sys.argv) == 1:
@@ -130,6 +144,7 @@ def main():
         for i in range(len(ips)):
             ssh_scp_put(ips[i], username='spider', password='spider')
             telent(ips[i])
+            ssh_scp_get(ips[i], 'spider', 'spider')
     if len(sys.argv)>1:
         create_self_file()
         get_log()
