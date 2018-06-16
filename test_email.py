@@ -8,7 +8,7 @@ mail_host = "smtp.qq.com"      # SMTP服务器
 sender = '895706056@qq.com'    # 发件人邮箱(最好写全, 不然会失败)
 receivers = ['769438933@qq.com', 'a895706056@163.com']  # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
 
-content = '滴滴～测试测试'
+content = 'hi,宝宝'
 title = '我是阿联酋酋长'  # 邮件主题
 
 def sendEmail():
