@@ -1,5 +1,6 @@
-# djang_study
-    django项目练习
+# ***djang_study***
+django项目练习	
+##**目录**	
+###**1.[djang_blog](#1)**	
 
-    * django_blog
-        > 博客系统
+####**1.<span id = "1">djang_blog</span>**
