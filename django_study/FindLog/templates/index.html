@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索支付日志</title>
+    <script src="{% static 'searchLog/jquery-3.2.1.min.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            var tbody = window.document.getElementById("tbody-result");
+            var str = "";
+            var result;
+            $.ajaxSetup({
+                data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
+            });
+            $('#qidForm').submit(function () {
+                var qid = $("#qid").val();                 //获得form中用户输入sql语句注意 与你html中input的id一致
+
+                $.ajax({
+                    type: "POST",
+                    data: {
+                        qid: qid
+                    },
+                    url: "{% url 'home:search_log' %}", //后台处理函数的url 这里用的是static url 需要与urls.py中的name一致,或者直接写http地址
+                    cache: false,
+                    dataType: "html",
+                    success: function (ret) {
+
+                        result = JSON.parse(ret);    //json字符串转为json对象
+                        str += "<tr>" +
+                            "<td>" + result.query + "</td>" +
+                            "<td>" + result.type + "</td>" +
+                            "<td>" + JSON.stringify(result.result) + "</td>" +
+                            "</tr>";
+                        tbody.innerHTML = str;
+                    },
+                    error: function () {
+                        alert("查询失败！");
+                    }
+                });
+                return false;
+            });
+
+        });
+    </script>
+</head>
+<body>
+<form id="qidForm" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    qid: <input type="text" name="qid" id="qid"/>
+    <input type="submit" name="submit" id="submit" value="提交"/>
+</form>
+<table id="tbody-result">
+
+</table>
+</body>
+</html>
