@@ -19,7 +19,13 @@ class Post(models.Model):
     body = models.TextField()
     created_time = models.DateTimeField()
     modified_time = models.DateTimeField()
-    excerpt = models.CharField(max_length=200, blank=True)  # 文章摘要，可为空
+    excerpt = models.CharField(max_length=100, blank=True)  # 文章摘要，可为空
     category = models.ForeignKey(Category, on_delete=True)  # ForeignKey表示1对多（多个post对应1个category）
     tags = models.ManyToManyField(Tag, blank=True)
     views = models.PositiveIntegerField(default=0)  # 阅读量
+
+    class Meta:
+        ordering = ['-created_time']
+
+    def get_absolute_url(self):
+        return
