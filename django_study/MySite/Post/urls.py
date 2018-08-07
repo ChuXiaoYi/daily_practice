@@ -11,6 +11,6 @@ from . import views
 app_name = 'Post'
 
 urlpatterns = [
-    url(r'', views.index, name="index"),
-    url(r'^detail$', views.detail, name="detail"),
+    url(r'^index$', views.index, name="index"),
+    url(r'^detail/post-(?P<pk>\d+)$', views.detail, name="detail"),
 ]

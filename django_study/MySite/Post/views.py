@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from .models import Post
-
+import markdown
 
 def index(request):
     """
@@ -24,11 +24,23 @@ def index(request):
     return render(request=request, template_name='Post/index.html', context=context)
 
 
-def detail(request):
-    """
-    文章详情
-    :param request:
-    :return:
+def detail(request, pk):
     """
 
-    return render(request, 'Post/blog.html', )
+    :param request:
+    :param pk: 接收到的文章的主键id
+    :return:
+    """
+    post = Post.objects.get(id=pk)
+    post.body = markdown.markdown(
+        post.body,
+        extensions=[
+            'markdown.extensions.extra',
+            'markdown.extensions.codehilite',
+            'markdown.extensions.toc',
+        ]
+    )
+    context = {
+        'post': post
+    }
+    return render(request, template_name='Post/blog.html', context=context)
