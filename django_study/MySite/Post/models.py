@@ -29,3 +29,11 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return
+
+    def add_views(self):
+        """
+        增加阅读量
+        :return:
+        """
+        self.views += 1
+        self.save(update_fields=['views'])

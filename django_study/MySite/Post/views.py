@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
-from .models import Post
+from .models import Post, Category
 import markdown
 
 def index(request):
@@ -19,7 +19,7 @@ def index(request):
     result = paginator.page(page)
     context = {
         "post_list": result,
-        "page": page
+        "page": page,
     }
     return render(request=request, template_name='Post/index.html', context=context)
 
@@ -32,12 +32,14 @@ def detail(request, pk):
     :return:
     """
     post = Post.objects.get(id=pk)
+    post.add_views()
     post.body = markdown.markdown(
         post.body,
         extensions=[
             'markdown.extensions.extra',
             'markdown.extensions.codehilite',
             'markdown.extensions.toc',
+            'markdown.extensions.fenced_code',
         ]
     )
     context = {

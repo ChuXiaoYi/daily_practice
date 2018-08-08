@@ -1,5 +1,6 @@
 {% extends 'Post/base.html' %}
 {% load static %}
+{% load simple_tags %}
 {% block content %}
     <div class="content">
         <div class="content_resize">
@@ -15,39 +16,41 @@
                             <a href="#">{{ tag.name }}</a>
                         {% endfor %}
                     </p>
-                    <p><a href="#"><strong>Comments (3)</strong></a> <span>&nbsp;&bull;&nbsp;</span> {{ post.modified_time }} <span>&nbsp;&bull;&nbsp;</span>
-                        <a href="#"><strong>Edit</strong></a></p>
+                    <p><strong>Comments ({{ post.comment_set.count }})</strong> <span>&nbsp;&bull;&nbsp;</span> {{ post.modified_time }} <span>&nbsp;&bull;&nbsp;</span>
+                        <strong>read {{ post.views }}</strong>
+                        </p>
                 </div>
                 <div class="article">
-                    <h2><span>3</span> Responses</h2>
+                    <h2><span>{{ post.comment_set.count }}</span> Responses</h2>
                     <div class="clr"></div>
+                    {% for comment in post.comment_set.all %}
                     <div class="comment">
                         <a href="#"><img src="{% static 'Post/images/userpic.gif' %}" width="40" height="40" alt="user"
                                          class="userpic"/></a>
-                        <p><a href="#">admin</a> Says:<br/>April 20th, 2009 at 2:17 pm</p>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse
-                            bibendum.</p>
+                        <p><a href="#">{{ comment.name }}</a> Says:<br/>{{ comment.created_time }}</p>
+                        <p>{{ comment.text }}</p>
                     </div>
-                    <div class="comment">
-                        <a href="#"><img src="{% static 'Post/images/userpic.gif' %}" width="40" height="40" alt="user"
-                                         class="userpic"/></a>
-                        <p><a href="#">Owner</a> Says:<br/>April 20th, 2009 at 3:21 pm</p>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum.
-                            Cras id urna. Morbi tincidunt, orci ac convallis aliquam, lectus turpis varius lorem, eu
-                            posuere nunc justo tempus leo.</p>
-                    </div>
-                    <div class="comment">
-                        <a href="#"><img src="{% static 'Post/images/userpic.gif' %}" width="40" height="40" alt="user"
-                                         class="userpic"/></a>
-                        <p><a href="#">admin</a> Says:<br/>April 20th, 2009 at 2:17 pm</p>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse
-                            bibendum.</p>
-                    </div>
+                    {% endfor %}
+{#                    <div class="comment">#}
+{#                        <a href="#"><img src="{% static 'Post/images/userpic.gif' %}" width="40" height="40" alt="user"#}
+{#                                         class="userpic"/></a>#}
+{#                        <p><a href="#">Owner</a> Says:<br/>April 20th, 2009 at 3:21 pm</p>#}
+{#                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum.#}
+{#                            Cras id urna. Morbi tincidunt, orci ac convallis aliquam, lectus turpis varius lorem, eu#}
+{#                            posuere nunc justo tempus leo.</p>#}
+{#                    </div>#}
+{#                    <div class="comment">#}
+{#                        <a href="#"><img src="{% static 'Post/images/userpic.gif' %}" width="40" height="40" alt="user"#}
+{#                                         class="userpic"/></a>#}
+{#                        <p><a href="#">admin</a> Says:<br/>April 20th, 2009 at 2:17 pm</p>#}
+{#                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse#}
+{#                            bibendum.</p>#}
+{#                    </div>#}
                 </div>
                 <div class="article">
                     <h2><span>Leave a</span> Reply</h2>
                     <div class="clr"></div>
-                    <form action="#" method="post" id="leavereply">
+                    <form action="{% url 'comment:comment' post.id %}" method="post" id="leavereply">
                         <ol>
                             <li>
                                 <label for="name">Name (required)</label>
@@ -76,39 +79,46 @@
             </div>
             <div class="sidebar">
                 <div class="gadget">
-                    <h2>Sidebar Menu</h2>
+                    <h2>分类目录</h2>
                     <div class="clr"></div>
                     <ul class="sb_menu">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">TemplateInfo</a></li>
-                        <li><a href="#">Style Demo</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Archives</a></li>
-                        <li><a href="#" title="Website Templates">Web Templates</a></li>
+                        {% get_categories as category_list %}
+                        {% for category in category_list %}
+                            <li><a href="#">{{ category.name }}</a></li>
+                        {% endfor %}
+{#                        <li><a href="#">Home</a></li>#}
+{#                        <li><a href="#">TemplateInfo</a></li>#}
+{#                        <li><a href="#">Style Demo</a></li>#}
+{#                        <li><a href="#">Blog</a></li>#}
+{#                        <li><a href="#">Archives</a></li>#}
+{#                        <li><a href="#" title="Website Templates">Web Templates</a></li>#}
                     </ul>
                 </div>
                 <div class="gadget">
-                    <h2><span>Sponsors</span></h2>
+                    <h2><span>最新评论</span></h2>
                     <div class="clr"></div>
                     <ul class="ex_menu">
-                        <li><a href="#" title="Website Templates">DreamTemplate</a><br/>
-                            Over 6,000+ Premium Web Templates
+                        {% get_latest_comment as comment_list %}
+                        {% for comment in comment_list %}
+                        <li><a href="#" title="Website Templates">{{ comment.post.title }}</a><br/>
+                            {{ comment.text | truncatechars:10}}
                         </li>
-                        <li><a href="#" title="WordPress Themes">TemplateSOLD</a><br/>
-                            Premium WordPress &amp; Joomla Themes
-                        </li>
-                        <li><a href="#" title="Affordable Hosting">ImHosted.com</a><br/>
-                            Affordable Web Hosting Provider
-                        </li>
-                        <li><a href="#" title="Stock Icons">MyVectorStore</a><br/>
-                            Royalty Free Stock Icons
-                        </li>
-                        <li><a href="#" title="Website Builder">Evrsoft</a><br/>
-                            Website Builder Software &amp; Tools
-                        </li>
-                        <li><a href="#" title="CSS Templates">CSS Hub</a><br/>
-                            Premium CSS Templates
-                        </li>
+                        {% endfor %}
+{#                        <li><a href="#" title="WordPress Themes">TemplateSOLD</a><br/>#}
+{#                            Premium WordPress &amp; Joomla Themes#}
+{#                        </li>#}
+{#                        <li><a href="#" title="Affordable Hosting">ImHosted.com</a><br/>#}
+{#                            Affordable Web Hosting Provider#}
+{#                        </li>#}
+{#                        <li><a href="#" title="Stock Icons">MyVectorStore</a><br/>#}
+{#                            Royalty Free Stock Icons#}
+{#                        </li>#}
+{#                        <li><a href="#" title="Website Builder">Evrsoft</a><br/>#}
+{#                            Website Builder Software &amp; Tools#}
+{#                        </li>#}
+{#                        <li><a href="#" title="CSS Templates">CSS Hub</a><br/>#}
+{#                            Premium CSS Templates#}
+{#                        </li>#}
                     </ul>
                 </div>
                 <div class="gadget">

@@ -1,5 +1,6 @@
 {% extends 'Post/base.html' %}
 {% load static %}
+{% load simple_tags %}
 {% block content %}
     <div class="content">
         <div class="content_resize">
@@ -38,39 +39,49 @@
             </div>
             <div class="sidebar">
                 <div class="gadget">
-                    <h2>Sidebar Menu</h2>
+                    <h2>分类目录</h2>
                     <div class="clr"></div>
                     <ul class="sb_menu">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">TemplateInfo</a></li>
-                        <li><a href="#">Style Demo</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Archives</a></li>
-                        <li><a href="#" title="Website Templates">Web Templates</a></li>
+                        {% get_categories as category_list %}
+                        {% for category in category_list %}
+                            <li><a href="#">{{ category.name }}</a></li>
+                        {% endfor %}
+
+{#                        <li><a href="#">TemplateInfo</a></li>#}
+{#                        <li><a href="#">Style Demo</a></li>#}
+{#                        <li><a href="#">Blog</a></li>#}
+{#                        <li><a href="#">Archives</a></li>#}
+{#                        <li><a href="#" title="Website Templates">Web Templates</a></li>#}
                     </ul>
                 </div>
                 <div class="gadget">
-                    <h2><span>Sponsors</span></h2>
+                    <h2><span>最新评论</span></h2>
                     <div class="clr"></div>
                     <ul class="ex_menu">
-                        <li><a href="#" title="Website Templates">DreamTemplate</a><br/>
-                            Over 6,000+ Premium Web Templates
+                        {% get_latest_comment as comment_list %}
+                        {% for comment in comment_list %}
+                        <li><a href="#" title="Website Templates">{{ comment.post.title }}</a><br/>
+                            {{ comment.text | truncatechars:10 }}
                         </li>
-                        <li><a href="#" title="WordPress Themes">TemplateSOLD</a><br/>
-                            Premium WordPress &amp; Joomla Themes
-                        </li>
-                        <li><a href="#" title="Affordable Hosting">ImHosted.com</a><br/>
-                            Affordable Web Hosting Provider
-                        </li>
-                        <li><a href="#" title="Stock Icons">MyVectorStore</a><br/>
-                            Royalty Free Stock Icons
-                        </li>
-                        <li><a href="#" title="Website Builder">Evrsoft</a><br/>
-                            Website Builder Software &amp; Tools
-                        </li>
-                        <li><a href="#" title="CSS Templates">CSS Hub</a><br/>
-                            Premium CSS Templates
-                        </li>
+                        {% endfor %}
+{#                        <li><a href="#" title="Website Templates">DreamTemplate</a><br/>#}
+{#                            Over 6,000+ Premium Web Templates#}
+{#                        </li>#}
+{#                        <li><a href="#" title="WordPress Themes">TemplateSOLD</a><br/>#}
+{#                            Premium WordPress &amp; Joomla Themes#}
+{#                        </li>#}
+{#                        <li><a href="#" title="Affordable Hosting">ImHosted.com</a><br/>#}
+{#                            Affordable Web Hosting Provider#}
+{#                        </li>#}
+{#                        <li><a href="#" title="Stock Icons">MyVectorStore</a><br/>#}
+{#                            Royalty Free Stock Icons#}
+{#                        </li>#}
+{#                        <li><a href="#" title="Website Builder">Evrsoft</a><br/>#}
+{#                            Website Builder Software &amp; Tools#}
+{#                        </li>#}
+{#                        <li><a href="#" title="CSS Templates">CSS Hub</a><br/>#}
+{#                            Premium CSS Templates#}
+{#                        </li>#}
                     </ul>
                 </div>
                 <div class="gadget">
