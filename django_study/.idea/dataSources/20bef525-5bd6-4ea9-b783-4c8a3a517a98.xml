@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="django_blog@localhost">
-  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+<dataSource name="MySite@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.9">
     <root id="1"/>
     <schema id="2" parent="1" name="django_blog">
       <Current>1</Current>
@@ -27,13 +27,13 @@
     <table id="21" parent="2" name="django_session"/>
     <column id="22" parent="7" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="23" parent="7" name="name">
       <Position>2</Position>
-      <DataType>varchar(80)|0</DataType>
+      <DataType>varchar(80)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <index id="24" parent="7" name="name">
@@ -51,18 +51,18 @@
     </key>
     <column id="27" parent="8" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="28" parent="8" name="group_id">
       <Position>2</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="29" parent="8" name="permission_id">
       <Position>3</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <index id="30" parent="8" name="auth_group_permissions_group_id_permission_id_0cd325b0_uniq">
@@ -97,23 +97,23 @@ permission_id</ColNames>
     </foreign-key>
     <column id="36" parent="9" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="37" parent="9" name="name">
       <Position>2</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="38" parent="9" name="content_type_id">
       <Position>3</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="39" parent="9" name="codename">
       <Position>4</Position>
-      <DataType>varchar(100)|0</DataType>
+      <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <index id="40" parent="9" name="auth_permission_content_type_id_codename_01ab375a_uniq">
@@ -139,57 +139,57 @@ codename</ColNames>
     </foreign-key>
     <column id="44" parent="10" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="45" parent="10" name="password">
       <Position>2</Position>
-      <DataType>varchar(128)|0</DataType>
+      <DataType>varchar(128)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="46" parent="10" name="last_login">
       <Position>3</Position>
-      <DataType>datetime(6)|0</DataType>
+      <DataType>datetime(6)|0s</DataType>
     </column>
     <column id="47" parent="10" name="is_superuser">
       <Position>4</Position>
-      <DataType>tinyint(1)|0</DataType>
+      <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="48" parent="10" name="username">
       <Position>5</Position>
-      <DataType>varchar(150)|0</DataType>
+      <DataType>varchar(150)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="49" parent="10" name="first_name">
       <Position>6</Position>
-      <DataType>varchar(30)|0</DataType>
+      <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="50" parent="10" name="last_name">
       <Position>7</Position>
-      <DataType>varchar(150)|0</DataType>
+      <DataType>varchar(150)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="51" parent="10" name="email">
       <Position>8</Position>
-      <DataType>varchar(254)|0</DataType>
+      <DataType>varchar(254)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="52" parent="10" name="is_staff">
       <Position>9</Position>
-      <DataType>tinyint(1)|0</DataType>
+      <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="53" parent="10" name="is_active">
       <Position>10</Position>
-      <DataType>tinyint(1)|0</DataType>
+      <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="54" parent="10" name="date_joined">
       <Position>11</Position>
-      <DataType>datetime(6)|0</DataType>
+      <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <index id="55" parent="10" name="username">
@@ -207,18 +207,18 @@ codename</ColNames>
     </key>
     <column id="58" parent="11" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="59" parent="11" name="user_id">
       <Position>2</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="60" parent="11" name="group_id">
       <Position>3</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <index id="61" parent="11" name="auth_user_groups_group_id_97559544_fk_auth_group_id">
@@ -253,18 +253,18 @@ group_id</ColNames>
     </foreign-key>
     <column id="67" parent="12" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="68" parent="12" name="user_id">
       <Position>2</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="69" parent="12" name="permission_id">
       <Position>3</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <index id="70" parent="12" name="auth_user_user_permissions_user_id_permission_id_14a6b632_uniq">
@@ -299,13 +299,13 @@ permission_id</ColNames>
     </foreign-key>
     <column id="76" parent="13" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="77" parent="13" name="name">
       <Position>2</Position>
-      <DataType>varchar(100)|0</DataType>
+      <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <key id="78" parent="13" name="PRIMARY">
@@ -315,43 +315,43 @@ permission_id</ColNames>
     </key>
     <column id="79" parent="14" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="80" parent="14" name="title">
       <Position>2</Position>
-      <DataType>varchar(100)|0</DataType>
+      <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="81" parent="14" name="body">
       <Position>3</Position>
-      <DataType>longtext|0</DataType>
+      <DataType>longtext|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="82" parent="14" name="created_time">
       <Position>4</Position>
-      <DataType>datetime(6)|0</DataType>
+      <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="83" parent="14" name="modified_time">
       <Position>5</Position>
-      <DataType>datetime(6)|0</DataType>
+      <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="84" parent="14" name="excerpt">
       <Position>6</Position>
-      <DataType>varchar(200)|0</DataType>
+      <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="85" parent="14" name="author_id">
       <Position>7</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="86" parent="14" name="category_id">
       <Position>8</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <index id="87" parent="14" name="blog_post_author_id_dd7a8485_fk_auth_user_id">
@@ -379,18 +379,18 @@ permission_id</ColNames>
     </foreign-key>
     <column id="92" parent="15" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="93" parent="15" name="post_id">
       <Position>2</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="94" parent="15" name="tag_id">
       <Position>3</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <index id="95" parent="15" name="blog_post_tags_post_id_tag_id_4925ec37_uniq">
@@ -425,13 +425,13 @@ tag_id</ColNames>
     </foreign-key>
     <column id="101" parent="16" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="102" parent="16" name="name">
       <Position>2</Position>
-      <DataType>varchar(100)|0</DataType>
+      <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <key id="103" parent="16" name="PRIMARY">
@@ -441,38 +441,38 @@ tag_id</ColNames>
     </key>
     <column id="104" parent="17" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="105" parent="17" name="name">
       <Position>2</Position>
-      <DataType>varchar(100)|0</DataType>
+      <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="106" parent="17" name="email">
       <Position>3</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="107" parent="17" name="url">
       <Position>4</Position>
-      <DataType>varchar(200)|0</DataType>
+      <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="108" parent="17" name="text">
       <Position>5</Position>
-      <DataType>longtext|0</DataType>
+      <DataType>longtext|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="109" parent="17" name="created_time">
       <Position>6</Position>
-      <DataType>datetime(6)|0</DataType>
+      <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="110" parent="17" name="post_id">
       <Position>7</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <index id="111" parent="17" name="comments_comment_post_id_96a9ac05_fk_blog_post_id">
@@ -491,41 +491,41 @@ tag_id</ColNames>
     </foreign-key>
     <column id="114" parent="18" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="115" parent="18" name="action_time">
       <Position>2</Position>
-      <DataType>datetime(6)|0</DataType>
+      <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="116" parent="18" name="object_id">
       <Position>3</Position>
-      <DataType>longtext|0</DataType>
+      <DataType>longtext|0s</DataType>
     </column>
     <column id="117" parent="18" name="object_repr">
       <Position>4</Position>
-      <DataType>varchar(200)|0</DataType>
+      <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="118" parent="18" name="action_flag">
       <Position>5</Position>
-      <DataType>smallint(5) unsigned|0</DataType>
+      <DataType>smallint(5) unsigned|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="119" parent="18" name="change_message">
       <Position>6</Position>
-      <DataType>longtext|0</DataType>
+      <DataType>longtext|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="120" parent="18" name="content_type_id">
       <Position>7</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
     </column>
     <column id="121" parent="18" name="user_id">
       <Position>8</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <index id="122" parent="18" name="django_admin_log_content_type_id_c4bce8eb_fk_django_co">
@@ -553,18 +553,18 @@ tag_id</ColNames>
     </foreign-key>
     <column id="127" parent="19" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="128" parent="19" name="app_label">
       <Position>2</Position>
-      <DataType>varchar(100)|0</DataType>
+      <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="129" parent="19" name="model">
       <Position>3</Position>
-      <DataType>varchar(100)|0</DataType>
+      <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <index id="130" parent="19" name="django_content_type_app_label_model_76bd3d3b_uniq">
@@ -584,23 +584,23 @@ model</ColNames>
     </key>
     <column id="133" parent="20" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="134" parent="20" name="app">
       <Position>2</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="135" parent="20" name="name">
       <Position>3</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="136" parent="20" name="applied">
       <Position>4</Position>
-      <DataType>datetime(6)|0</DataType>
+      <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <key id="137" parent="20" name="PRIMARY">
@@ -610,17 +610,17 @@ model</ColNames>
     </key>
     <column id="138" parent="21" name="session_key">
       <Position>1</Position>
-      <DataType>varchar(40)|0</DataType>
+      <DataType>varchar(40)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="139" parent="21" name="session_data">
       <Position>2</Position>
-      <DataType>longtext|0</DataType>
+      <DataType>longtext|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="140" parent="21" name="expire_date">
       <Position>3</Position>
-      <DataType>datetime(6)|0</DataType>
+      <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <index id="141" parent="21" name="django_session_expire_date_a5c62663">

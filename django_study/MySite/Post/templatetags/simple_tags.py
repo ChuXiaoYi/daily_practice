@@ -6,7 +6,7 @@
 #       @Software: PyCharm
 # --------------------------------------
 from django import template
-from ..models import Category
+from ..models import Category, Post
 from comment.models import Comment
 
 register = template.Library()
@@ -22,10 +22,19 @@ def get_categories():
 
 
 @register.simple_tag
-def get_latest_comment():
+def get_hottest_post():
     """
-    获取最新评论
+    获取最热文章
     :return:
     """
-    comment_list = Comment.objects.all()[:5].only('post', 'text')   # 只获取特定字段
+    post_list = Post.objects.all().order_by('-views')[:5]
+    return post_list
+
+@register.simple_tag()
+def get_latest_comment():
+    """
+    获取最新的评论
+    :return:
+    """
+    comment_list = Comment.objects.all()[:5].only('post', 'text')
     return comment_list

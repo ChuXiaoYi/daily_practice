@@ -11,6 +11,16 @@ def index(request):
     """
 
     post = Post.objects.all()
+    for p in post:
+        p.body = markdown.markdown(
+            p.body,
+            extensions=[
+                'markdown.extensions.extra',
+                'markdown.extensions.codehilite',
+                'markdown.extensions.toc',
+                'markdown.extensions.fenced_code',
+            ]
+        )
 
     limit = 3
     paginator = Paginator(post, limit)
@@ -39,10 +49,9 @@ def detail(request, pk):
             'markdown.extensions.extra',
             'markdown.extensions.codehilite',
             'markdown.extensions.toc',
-            'markdown.extensions.fenced_code',
         ]
     )
     context = {
         'post': post
     }
-    return render(request, template_name='Post/blog.html', context=context)
+    return render(request, template_name='Post/single.html', context=context)
