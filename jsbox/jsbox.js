@@ -16,7 +16,7 @@ $ui.render({
             make.left.top.right.inset(10)
         },
         events: {
-
+            
         }
     },
     {
@@ -35,6 +35,8 @@ $ui.render({
             tapped: function (sender) {
                 var i = $("search_input")
                 translate(i.text)
+                console.log($app.env)
+                $("search_input").blur()
             }
         }
     },
@@ -44,14 +46,44 @@ $ui.render({
             id: "result",
             // bgcolor: $color("#4484f4"),
             textColor: $color("black"),
-            editable: false
+            editable: false,
+            selectable: true
         },
         layout: function (make, views) {
             make.edges.insets($insets(130, 10, 40, 10)) //上、左、下、右
+        },
+        events: {
+
         }
     }
     ]
 });
+
+get_clipboard_text()
+
+function get_clipboard_text(){
+    var clipboarg_text = $clipboard.text
+    if (clipboarg_text){
+        $ui.alert({
+            title: "小声哔哔=.=",
+            message: "是否复制剪贴板内容",
+            actions:[
+                {
+                    title: "OK",
+                    handler: function(){
+                        $("search_input").text = clipboarg_text
+                    }
+                },
+                {
+                    title: "Cancel",
+                    handler: function(){
+
+                    }
+                }
+            ]
+        });
+    }
+}
 
 /**
  * 更改翻译类型
@@ -97,3 +129,5 @@ function translate(search_text) {
         }
     });
 }
+
+
